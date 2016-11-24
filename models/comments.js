@@ -2,13 +2,9 @@ const db = require('../db/db');
 
 function getAllComment(req, res, next) {
   db.any(`SELECT * FROM comment;`)
-    .then((comments) => {
-    res.status(200)
-    .json({
-     status: success,
-     comments: comments,
-     message: 'Get all comments'
-    });
+  .then((comments) => {
+    res.comments = comments;
+    next();
   })
   .catch(err => next(err));
 }
