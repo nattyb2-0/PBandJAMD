@@ -25,5 +25,20 @@ CREATE TABLE comment (
   date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+-- DROP TABLE IF EXISTS users;
+
+
+-- CREATE TABLE users (
+--   id SERIAL PRIMARY KEY,
+--   firstname VARCHAR,
+--   lastname VARCHAR,
+--   email VARCHAR,
+--   username VARCHAR NOT NULL UNIQUE,
+--   password VARCHAR NOT NULL,
+--   date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+
+
+
 
 

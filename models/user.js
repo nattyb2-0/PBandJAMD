@@ -3,12 +3,23 @@
 
 const db = require('../lib/dbConnect.js');
 
+// function createUser(req, res, next) { // makes a new user upon signup page
+//   const userObject = {
+//     username: req.body.username,
+
+//     // Store hashed password
+//     password: req.body.password,
+//   };
+
+//   db.none(`INSERT INTO users (username, password)
+//           VALUES ($/username/, $/password/);`, userObject)
+//     .then(next())
+//     .catch(err => next(err));
+// }
 function createUser(req, res, next) { // makes a new user upon signup page
   const userObject = {
     username: req.body.username,
-
-    // Store hashed password
-    password: req.body.password,
+    password: req.body.password
   };
 
   db.none(`INSERT INTO users (username, password)

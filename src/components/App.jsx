@@ -13,11 +13,12 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
-
+// setting the original state of the applicatio
     this.state = {
+      //current user is null because no body is logged in
       currentUser: null,
       currentTopic: 0,
-      currentPage: 0,
+      currentPage: 1,
       currentComment: '',
       currentCommentId: 0,
 
@@ -53,6 +54,8 @@ class App extends Component {
   }
 
 // INITIAL FUNCTIONS *http://stackoverflow.com/questions/31023308/clearinterval-is-not-working-in-reactjs*
+// when the app firstmounts...run this function
+// which is a function to get all the topics from db
   componentDidMount() {
     // this.intervalId = setInterval(this.getAllTopics.bind(this), 1000);, THIS LINE CAUSE IT TO AUTO UPDATE
     this.getAllTopics();
@@ -64,12 +67,13 @@ class App extends Component {
 // END INITIAL FUNCTIONS
 
 // BEGIN LOGIN FORM FUNCTIONS *TAKEN FROM BOBBY KING'S REACT PUPPIES SOLUTION WITH AUTH*
-  onSuccessfulLogIn(a) {
+  onSuccessfulLogIn(user) {
     this.alertInfo('Youre logged in!');
-    console.log(a);
+    console.log(user);
+    console.log(user.id)
     this.setState({
       disabled: '',
-      currentUser: a.id,
+      currentUser: user.id,
       buttonText: 'My Account',
       login: {
         username: '',
@@ -246,6 +250,7 @@ class App extends Component {
       })
       .then(r => r.json())
       .then((info) => {
+        console.log(info)
         this.setState({
           userInfo: info,
         });
@@ -431,11 +436,13 @@ class App extends Component {
   render() {
     return (
       <div id="app-container">
+     {/*Header component*/}
         <Header />
 
         {this.renderAside(this.state.login.loggedIn)}
 
         <div id="main-container">
+      {/*renders to the application the current state of info in db*/}
           {this.renderComponent(this.state.currentPage)}
         </div>
         <Footer />
